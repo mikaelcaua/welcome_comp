@@ -12,7 +12,7 @@ class SupabaseRepository extends ExerciseRepository {
   }) async {
     try {
       var response =
-          (await Supabase.instance.client.from('exercises').select());
+          (await this._supabaseClient.from('exercises').select());
       print(response);
 
       return ExerciseModel.fromMap(response[0]);
