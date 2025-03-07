@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-var h1Text =
-    TextStyle( fontWeight: FontWeight.w600, fontSize: 32);
-var h2Text =
-    TextStyle( fontWeight: FontWeight.w600, fontSize: 16);
+var h1Text = TextStyle(fontWeight: FontWeight.bold, fontSize: 32);
+var h2Text = TextStyle(fontWeight: FontWeight.bold, fontSize: 24);
+var h3Text = TextStyle(fontWeight: FontWeight.bold, fontSize: 18);

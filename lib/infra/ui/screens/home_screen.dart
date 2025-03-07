@@ -17,9 +17,13 @@ class HomeScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SearchSectionComponent(),
-            Text('Explore as disciplinas', style: h2Text,),
-            Expanded(
-              child: ListSubjectCardComponent(listSubjects: [SubjectModel(title: 'asdasdasdasd', description: 'asdasd')]),
+            Text('Explore as disciplinas', style: h2Text),
+            Flexible(
+              child: ListSubjectCardComponent(listSubjects: [
+                SubjectModel(title: 'Algoritmo', description: 'asdasd'),
+                SubjectModel(title: 'Algoritmo', description: 'asdasd'),
+                SubjectModel(title: 'Algoritmo', description: 'asdasd')
+              ]),
             ),
           ],
         ),
