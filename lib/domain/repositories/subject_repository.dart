@@ -1,0 +1,5 @@
+import 'package:game_code/domain/models/subject_model.dart';
+
+abstract class SubjectRepository {
+  Future<List<SubjectModel>> getAllSubject();
+}

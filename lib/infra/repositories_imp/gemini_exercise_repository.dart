@@ -4,7 +4,7 @@ import 'package:game_code/domain/models/exercise_model.dart';
 import 'package:game_code/domain/repositories/exercise_repository.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 
-class GeminiRepository extends ExerciseRepository {
+class GeminiExerciseRepository extends ExerciseRepository {
   final model = GenerativeModel(
     model: 'gemini-1.5-flash-latest',
     apiKey: dotenv.env['API_KEY']!,
