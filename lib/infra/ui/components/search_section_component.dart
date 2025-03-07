@@ -19,7 +19,7 @@ class SearchSectionComponent extends StatelessWidget {
           children: [
             Text(
               'Bora lá?',
-              style: h1Text.copyWith(color: textWhiteColor),
+              style: h1Text.copyWith(color: whiteColor),
               textAlign: TextAlign.left,
             ),
             TextFormField(
@@ -29,7 +29,7 @@ class SearchSectionComponent extends StatelessWidget {
                   borderSide: BorderSide.none,
                 ),
                 filled: true,
-                fillColor: Colors.white,
+                fillColor: whiteColor,
                 hintText: 'Escolha uma disciplina para estudar',
                 prefixIcon: Icon(Icons.search),
               ),

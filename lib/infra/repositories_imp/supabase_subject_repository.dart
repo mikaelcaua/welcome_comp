@@ -4,10 +4,12 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SupabaseSubjectRepository extends SubjectRepository {
   final SupabaseClient _supabaseClient = Supabase.instance.client;
+
   @override
   Future<List<SubjectModel>> getAllSubject() async {
     try {
-      var response = await _supabaseClient.from('subjects').select();
+      final response = await _supabaseClient.rpc('get_subjects_with_tests');
+      print(response);
       var convert = SubjectModel.convertListMapToListSubjectModel(response);
       return convert;
     } catch (e) {
