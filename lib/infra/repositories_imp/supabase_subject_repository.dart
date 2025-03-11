@@ -9,7 +9,6 @@ class SupabaseSubjectRepository extends SubjectRepository {
   Future<List<SubjectModel>> getAllSubject() async {
     try {
       final response = await _supabaseClient.rpc('get_subjects_with_tests');
-      print(response);
       var convert = SubjectModel.convertListMapToListSubjectModel(response);
       return convert;
     } catch (e) {
