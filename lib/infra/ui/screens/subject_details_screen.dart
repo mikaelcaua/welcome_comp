@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:welcome_comp/infra/ui/components/list_test_component.dart';
 import 'package:welcome_comp/infra/ui/theme/colors.dart';
 import '../../../domain/models/subject_model.dart';
 import '../../viewmodels/pdf_screen_view_model.dart';
@@ -6,7 +7,7 @@ import '../../viewmodels/subject_view_model.dart';
 import '../components/list_exemplar_component.dart';
 import '../theme/fonts.dart';
 
-class SubjectDetailsScreen extends StatefulWidget {
+class SubjectDetailsScreen extends StatelessWidget {
   const SubjectDetailsScreen({
     super.key,
     required this.subjectModel,
@@ -18,24 +19,9 @@ class SubjectDetailsScreen extends StatefulWidget {
   final PdfScreenViewModel pdfScreenViewModel;
 
   @override
-  _SubjectDetailsScreenState createState() => _SubjectDetailsScreenState();
-}
-
-class _SubjectDetailsScreenState extends State<SubjectDetailsScreen> {
-  final Color searchSectionComponent = const Color.fromRGBO(77, 117, 249, 1);
-  final List<bool> _isExpanded = [];
-
-  @override
-  void initState() {
-    super.initState();
-    _isExpanded
-        .addAll(List.generate(widget.subjectModel.tests.length, (_) => false));
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: searchSectionComponent,
+      backgroundColor: primaryColor,
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
@@ -55,71 +41,18 @@ class _SubjectDetailsScreenState extends State<SubjectDetailsScreen> {
                     ),
                   ),
                   Text(
-                    widget.subjectModel.title,
+                    subjectModel.title,
                     style: h1Text.copyWith(color: whiteColor),
                   ),
                   Text(
-                    widget.subjectModel.description,
+                    subjectModel.description,
                     style: h2Text.copyWith(color: whiteColor),
                   ),
                 ],
               ),
             ),
           ),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (context, index) {
-                final test = widget.subjectModel.tests[index];
-                return Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 8.0, horizontal: 16.0),
-                  child: ExpansionTile(
-                    backgroundColor: whiteColor,
-                    title: Text(
-                      'Prova ${index + 1}',
-                      style: const TextStyle(color: whiteColor),
-                    ),
-                    onExpansionChanged: (bool expanded) {
-                      setState(() {
-                        _isExpanded[index] = expanded;
-                      });
-                    },
-                    initiallyExpanded: _isExpanded[index],
-                    children: [
-                      FutureBuilder(
-                        future: widget.subjectViewModel
-                            .getAllInformationsTest(test.gitUrl),
-                        builder: (context, snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return const Center(
-                                child: CircularProgressIndicator());
-                          } else if (snapshot.hasError) {
-                            return Text('Erro: ${snapshot.error}',
-                                style: const TextStyle(color: whiteColor));
-                          }
-                          if (snapshot.hasData) {
-                            return ListExemplarComponent(
-                              testName: 'prova ${index + 1}',
-                              subjectName: widget.subjectModel.title,
-                              pdfScreenViewModel: widget.pdfScreenViewModel,
-                              listExemplarModel: snapshot.data!,
-                            );
-                          } else {
-                            return const Center(
-                              child: Text('Sem dados disponíveis',
-                                  style: TextStyle(color: whiteColor)),
-                            );
-                          }
-                        },
-                      ),
-                    ],
-                  ),
-                );
-              },
-              childCount: widget.subjectModel.tests.length,
-            ),
-          ),
+          ListTestComponent(tests: subjectModel.tests, subjectModel: subjectModel, listExemplarModel: subjectViewModel.getAllInformationsTest, pdfScreenViewModel: pdfScreenViewModel)
         ],
       ),
     );
