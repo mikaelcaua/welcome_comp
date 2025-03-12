@@ -1,7 +1,5 @@
-
-
-import '../../domain/models/subject_model.dart';
-import '../../domain/repositories/subject_repository.dart';
+import '../domain/models/subject_model.dart';
+import '../domain/repositories/subject_repository.dart';
 
 class GetAllSubjectsUsecase {
   final SubjectRepository subjectRepository;

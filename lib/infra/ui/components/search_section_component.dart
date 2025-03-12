@@ -12,7 +12,7 @@ class SearchSectionComponent extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: searchSectionComponent),
+          color: primaryColor),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(20, 30, 20, 30),
         child: Column(

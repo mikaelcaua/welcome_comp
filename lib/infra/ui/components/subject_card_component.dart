@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:welcome_comp/infra/ui/theme/colors.dart';
 import '../../../domain/models/subject_model.dart';
 import '../theme/fonts.dart';
 
@@ -12,7 +13,7 @@ class SubjectCardComponent extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: whiteColor,
           borderRadius: BorderRadius.circular(15),
           boxShadow: [
             BoxShadow(

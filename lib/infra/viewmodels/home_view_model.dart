@@ -1,5 +1,5 @@
 
-import '../../application/usecases/get_all_subjects_usecase.dart';
+import '../../usecases/get_all_subjects_usecase.dart';
 import '../../domain/models/subject_model.dart';
 
 class HomeViewModel{

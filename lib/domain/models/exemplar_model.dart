@@ -1,10 +1,12 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+
 import 'dart:convert';
 
 class ExemplarModel {
   final String name;
   final String downloadUrl;
   final String htmlUrl;
+  late String subjectName;
+  late String testName;
 
   ExemplarModel(
       {required this.downloadUrl, required this.htmlUrl, required this.name});
@@ -36,5 +38,6 @@ class ExemplarModel {
       ExemplarModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'ExemplarModel(name: $name, downloadUrl: $downloadUrl, htmlUrl: $htmlUrl)';
+  String toString() =>
+      'ExemplarModel(name: $name, downloadUrl: $downloadUrl, htmlUrl: $htmlUrl)';
 }

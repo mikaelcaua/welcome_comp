@@ -1,20 +1,41 @@
 import 'package:flutter/material.dart';
-
+import 'package:welcome_comp/infra/ui/theme/colors.dart';
 import '../../../domain/models/subject_model.dart';
+import '../../viewmodels/pdf_screen_view_model.dart';
 import '../../viewmodels/subject_view_model.dart';
 import '../components/list_exemplar_component.dart';
 import '../theme/fonts.dart';
 
-
-class SubjectDetailsScreen extends StatelessWidget {
-  const SubjectDetailsScreen(
-      {super.key, required this.subjectModel, required this.subjectViewModel});
+class SubjectDetailsScreen extends StatefulWidget {
+  const SubjectDetailsScreen({
+    super.key,
+    required this.subjectModel,
+    required this.subjectViewModel,
+    required this.pdfScreenViewModel,
+  });
   final SubjectModel subjectModel;
   final SubjectViewModel subjectViewModel;
+  final PdfScreenViewModel pdfScreenViewModel;
+
+  @override
+  _SubjectDetailsScreenState createState() => _SubjectDetailsScreenState();
+}
+
+class _SubjectDetailsScreenState extends State<SubjectDetailsScreen> {
+  final Color searchSectionComponent = const Color.fromRGBO(77, 117, 249, 1);
+  final List<bool> _isExpanded = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _isExpanded
+        .addAll(List.generate(widget.subjectModel.tests.length, (_) => false));
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: searchSectionComponent,
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
@@ -34,12 +55,12 @@ class SubjectDetailsScreen extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    subjectModel.title,
-                    style: h1Text,
+                    widget.subjectModel.title,
+                    style: h1Text.copyWith(color: whiteColor),
                   ),
                   Text(
-                    subjectModel.description,
-                    style: h2Text,
+                    widget.subjectModel.description,
+                    style: h2Text.copyWith(color: whiteColor),
                   ),
                 ],
               ),
@@ -48,29 +69,46 @@ class SubjectDetailsScreen extends StatelessWidget {
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, index) {
-                final test = subjectModel.tests[index];
+                final test = widget.subjectModel.tests[index];
                 return Padding(
                   padding: const EdgeInsets.symmetric(
                       vertical: 8.0, horizontal: 16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  child: ExpansionTile(
+                    backgroundColor: whiteColor,
+                    title: Text(
+                      'Prova ${index + 1}',
+                      style: const TextStyle(color: whiteColor),
+                    ),
+                    onExpansionChanged: (bool expanded) {
+                      setState(() {
+                        _isExpanded[index] = expanded;
+                      });
+                    },
+                    initiallyExpanded: _isExpanded[index],
                     children: [
-                      Text('Prova ${index + 1}'),
                       FutureBuilder(
-                        future: subjectViewModel
+                        future: widget.subjectViewModel
                             .getAllInformationsTest(test.gitUrl),
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
-                            return const CircularProgressIndicator();
+                            return const Center(
+                                child: CircularProgressIndicator());
                           } else if (snapshot.hasError) {
-                            return Text('Erro: ${snapshot.error}');
-                          } else if (snapshot.hasData) {
+                            return Text('Erro: ${snapshot.error}',
+                                style: const TextStyle(color: whiteColor));
+                          }
+                          if (snapshot.hasData) {
                             return ListExemplarComponent(
-                                listExemplarModel: snapshot.data!);
+                              testName: 'prova ${index + 1}',
+                              subjectName: widget.subjectModel.title,
+                              pdfScreenViewModel: widget.pdfScreenViewModel,
+                              listExemplarModel: snapshot.data!,
+                            );
                           } else {
                             return const Center(
-                              child: Text('Sem dados disponíveis'),
+                              child: Text('Sem dados disponíveis',
+                                  style: TextStyle(color: whiteColor)),
                             );
                           }
                         },
@@ -79,7 +117,7 @@ class SubjectDetailsScreen extends StatelessWidget {
                   ),
                 );
               },
-              childCount: subjectModel.tests.length,
+              childCount: widget.subjectModel.tests.length,
             ),
           ),
         ],

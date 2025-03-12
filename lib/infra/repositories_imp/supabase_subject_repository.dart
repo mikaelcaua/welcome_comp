@@ -3,7 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../domain/models/subject_model.dart';
 import '../../domain/repositories/subject_repository.dart';
 
-class SupabaseSubjectRepository extends SubjectRepository {
+class SupabaseSubjectRepository implements SubjectRepository {
   final SupabaseClient _supabaseClient = Supabase.instance.client;
 
   @override
