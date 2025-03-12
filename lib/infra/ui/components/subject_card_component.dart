@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:game_code/domain/models/subject_model.dart';
-import 'package:game_code/infra/ui/theme/fonts.dart';
+import '../../../domain/models/subject_model.dart';
+import '../theme/fonts.dart';
 
 class SubjectCardComponent extends StatelessWidget {
   const SubjectCardComponent({super.key, required this.subjectModel});

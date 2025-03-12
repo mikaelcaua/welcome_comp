@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 
 class TestModel {
@@ -6,7 +5,6 @@ class TestModel {
   final String videoUrl;
 
   TestModel({required this.gitUrl, required this.videoUrl});
-
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -24,7 +22,8 @@ class TestModel {
 
   String toJson() => json.encode(toMap());
 
-  factory TestModel.fromJson(String source) => TestModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory TestModel.fromJson(String source) =>
+      TestModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() => 'TestModel(gitUrl: $gitUrl, videoUrl: $videoUrl)';

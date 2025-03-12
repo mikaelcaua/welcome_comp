@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:game_code/domain/models/test_model.dart';
+import 'package:welcome_comp/domain/models/test_model.dart';
 
 class SubjectModel {
   final String title;

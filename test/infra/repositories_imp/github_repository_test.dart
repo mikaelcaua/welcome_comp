@@ -1,12 +1,14 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:game_code/infra/repositories_imp/github_repository.dart';
+import 'package:welcome_comp/domain/models/exemplar_model.dart';
+import 'package:welcome_comp/infra/repositories_imp/github_repository.dart';
 
-void main(){
+void main() {
   group('GithubRepository', () {
     test('should return a list of repositories', () async {
-      var result = await GithubRepository().getTestInformation('https://api.github.com/repos/elheremes/awesome-ufma');
+      var result = await GithubRepository().getTestExemplars(
+          'https://github.com/elheremes/awesome-ufma/tree/master/Algoritimos%20I/Prova%201');
       print(result);
-      expect(result, isA<dynamic>());
+      expect(result, isA<List<ExemplarModel>>());
     });
   });
 }

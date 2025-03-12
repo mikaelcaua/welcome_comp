@@ -1,11 +1,11 @@
-import '../../domain/repositories/test_repository.dart';
+import '../../domain/models/exemplar_model.dart';
+import '../../domain/repositories/test_exemplar_repository.dart';
 
-abstract class GetAllInformationsTestUsecase {
-  final TestRepository testRepository;
-  final String testUrl;
-  GetAllInformationsTestUsecase({required this.testRepository, required this.testUrl});
+class GetAllInformationsTestUsecase {
+  final TestExemplarRepository testRepository;
+  GetAllInformationsTestUsecase({required this.testRepository});
 
-  dynamic execute(){
-    return testRepository.getTestInformation(testUrl);
+  Future<List<ExemplarModel>> execute(String testUrl) {
+    return testRepository.getTestExemplars(testUrl);
   }
 }

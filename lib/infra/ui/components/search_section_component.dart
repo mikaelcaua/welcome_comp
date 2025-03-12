@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:game_code/infra/ui/theme/colors.dart';
-import 'package:game_code/infra/ui/theme/fonts.dart';
+
+import '../theme/colors.dart';
+import '../theme/fonts.dart';
+
 
 class SearchSectionComponent extends StatelessWidget {
   const SearchSectionComponent({super.key});

@@ -1,5 +1,6 @@
-import 'package:game_code/application/usecases/get_all_subjects_usecase.dart';
-import 'package:game_code/domain/models/subject_model.dart';
+
+import '../../application/usecases/get_all_subjects_usecase.dart';
+import '../../domain/models/subject_model.dart';
 
 class HomeViewModel{
   final GetAllSubjectsUsecase getAllSubjectsUsecase;

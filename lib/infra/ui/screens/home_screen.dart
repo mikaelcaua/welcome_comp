@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:game_code/domain/models/subject_model.dart';
-import 'package:game_code/infra/ui/components/list_subject_card_component.dart';
-import 'package:game_code/infra/ui/components/search_section_component.dart';
-import 'package:game_code/infra/ui/theme/fonts.dart';
-import 'package:game_code/infra/viewmodels/home_view_model.dart';
+
+import '../../../domain/models/subject_model.dart';
+import '../../viewmodels/home_view_model.dart';
+import '../../viewmodels/subject_view_model.dart';
+import '../components/list_subject_card_component.dart';
+import '../components/search_section_component.dart';
+import '../theme/fonts.dart';
+
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key, required this.homeViewModel});
+  const HomeScreen({super.key, required this.homeViewModel, required this.subjectViewModel});
   final HomeViewModel homeViewModel;
+  final SubjectViewModel subjectViewModel;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +34,7 @@ class HomeScreen extends StatelessWidget {
                     return Center(child: Text('Erro: ${snapshot.error}'));
                   } else if (snapshot.hasData) {
                     final listSubjects = snapshot.data!;
-                    return ListSubjectCardComponent(listSubjects: listSubjects);
+                    return ListSubjectCardComponent(listSubjects: listSubjects, subjectViewModel: subjectViewModel);
                   } else {
                     return Center(child: Text('Nenhuma disciplina encontrada'));
                   }
