@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:welcome_comp/infra/ui/theme/colors.dart';
-import 'package:welcome_comp/infra/viewmodels/pdf_screen_view_model.dart';
+import 'package:welcome_comp/infra/ui/utils/convertToApiUrl.dart';
+
 import '../../../domain/models/exemplar_model.dart';
+import '../../viewmodels/pdf_screen_view_model.dart';
 import '../screens/pdf_viewer_screen.dart';
+import '../theme/colors.dart';
 
 class ClickableExemplarComponent extends StatelessWidget {
   const ClickableExemplarComponent(
@@ -36,9 +38,9 @@ class ClickableExemplarComponent extends StatelessWidget {
         children: [
           Text(
             exemplarModel.name,
-            style: TextStyle(fontSize: 18, color: whiteColor),
+            style: TextStyle(fontSize: 18, color: primaryColor),
           ),
-          Icon(Icons.download,color: whiteColor,)
+          Icon(Icons.download,color: primaryColor,)
         ],
       ),
     );

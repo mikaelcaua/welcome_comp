@@ -7,6 +7,6 @@ class GetAllSubjectsUsecase {
   GetAllSubjectsUsecase({required this.subjectRepository});
 
   Future<List<SubjectModel>> execute() {
-    return subjectRepository.getAllSubject();
+    return subjectRepository.getSubjectsWithTestsAndExemplars();
   }
 }

@@ -20,8 +20,6 @@ class ListExemplarComponent extends StatelessWidget {
     return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: listExemplarModel.map((exemplar) {
-          exemplar.subjectName = subjectName;
-          exemplar.testName = testName;
           return ClickableExemplarComponent(
             exemplarModel: exemplar,
             pdfScreenViewModel: pdfScreenViewModel,

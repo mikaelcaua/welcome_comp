@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:welcome_comp/infra/ui/theme/colors.dart';
 import '../../../domain/models/subject_model.dart';
+import '../theme/colors.dart';
 import '../theme/fonts.dart';
 
 class SubjectCardComponent extends StatelessWidget {
@@ -37,7 +37,7 @@ class SubjectCardComponent extends StatelessWidget {
               ),
             ),
             Text(
-              subjectModel.title,
+              subjectModel.name,
               textAlign: TextAlign.center,
               style: h3Text,
             ),

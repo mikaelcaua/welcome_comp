@@ -1,5 +1,5 @@
 import '../models/subject_model.dart';
 
 abstract class SubjectRepository {
-  Future<List<SubjectModel>> getAllSubject();
+  Future<List<SubjectModel>> getSubjectsWithTestsAndExemplars();
 }

@@ -1,42 +1,99 @@
 import 'dart:convert';
-import 'package:welcome_comp/domain/models/test_model.dart';
+import 'exemplar_model.dart';
+import 'test_model.dart';
 
 class SubjectModel {
-  final String title;
+  final int id;
+  final String name;
   final String description;
   final List<TestModel> tests;
 
-  SubjectModel(
-      {required this.title, required this.description, required this.tests});
+  SubjectModel({
+    required this.id,
+    required this.name,
+    required this.description,
+    required this.tests,
+  });
 
-  static List<SubjectModel> convertListMapToListSubjectModel(
-      List<dynamic> lista) {
-    Map<int, SubjectModel> subjectMap = {};
+  static List<SubjectModel> convertSqlResultToSubjectModels(
+    List<dynamic> sqlResults) {
 
-    for (var item in lista) {
-      if (!subjectMap.containsKey(item['subject_id'])) {
-        subjectMap[item['subject_id']] = SubjectModel(
-          title: item['title'],
-          description: item['description'],
+    Map<int, SubjectModel> subjectsMap = {};
+
+    for (var row in sqlResults) {
+
+      int subjectId = row['subjects_id'];
+      String subjectName = row['subjects_name'];
+      String subjectDescription = row['subjects_description'];
+
+      if (!subjectsMap.containsKey(subjectId)) {
+        print('Criando novo SubjectModel para subjectId: $subjectId');
+        subjectsMap[subjectId] = SubjectModel(
+          id: subjectId,
+          name: subjectName,
+          description: subjectDescription,
           tests: [],
         );
       }
 
-      TestModel test = TestModel(
-        gitUrl: item['giturl'],
-        videoUrl: item['videourl'],
-      );
+      if (row['tests_id'] != null) {
+        int testId = row['tests_id'];
+        String testName = row['tests_name'];
+        String gitUrl = row['tests_giturl'];
+        String videoUrl = row['tests_videourl'];
 
-      subjectMap[item['subject_id']]?.tests.add(test);
+        TestModel? existingTest = subjectsMap[subjectId]!.tests.firstWhere(
+          (test) => test.id == testId,
+          orElse: () => TestModel(
+            id: -1,
+            name: '',
+            gitUrl: '',
+            videoUrl: '',
+            listExemplarModel: [],
+          ),
+        );
+
+        if (existingTest.id == -1) {
+          subjectsMap[subjectId]!.tests.add(TestModel(
+            id: testId,
+            name: testName,
+            gitUrl: gitUrl,
+            videoUrl: videoUrl,
+            listExemplarModel: [],
+          ));
+        }
+
+        if (row['exemplars_id'] != null) {
+          int exemplarId = row['exemplars_id'];
+          String exemplarName = row['exemplars_name'];
+          String downloadUrl = row['exemplars_downloadurl'];
+          String htmlUrl = row['exemplars_htmlurl'];
+
+          ExemplarModel exemplar = ExemplarModel(
+            id: exemplarId,
+            name: exemplarName,
+            downloadUrl: downloadUrl,
+            htmlUrl: htmlUrl,
+            subjectName: subjectName,
+            testName: testName,
+          );
+
+          TestModel testToUpdate = subjectsMap[subjectId]!.tests.firstWhere(
+            (test) => test.id == testId,
+          );
+
+          testToUpdate.listExemplarModel.add(exemplar);
+        }
+      }
     }
 
-    List<SubjectModel> subjects = subjectMap.values.toList();
-    return subjects;
+    return subjectsMap.values.toList();
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'title': title,
+      'id': id,
+      'name': name,
       'description': description,
       'tests': tests.map((x) => x.toMap()).toList(),
     };
@@ -44,11 +101,13 @@ class SubjectModel {
 
   factory SubjectModel.fromMap(Map<String, dynamic> map) {
     return SubjectModel(
-      title: map['title'] as String,
+      id: map['id'],
+      name: map['name'] as String,
       description: map['description'] as String,
       tests: List<TestModel>.from(
-        (map['tests'] as List).map<TestModel>(
-            (x) => TestModel.fromMap(x as Map<String, dynamic>)),
+        (map['tests'] as List<int>).map<TestModel>(
+          (x) => TestModel.fromMap(x as Map<String, dynamic>),
+        ),
       ),
     );
   }
@@ -59,6 +118,7 @@ class SubjectModel {
       SubjectModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() =>
-      'SubjectModel(title: $title, description: $description, tests: $tests)';
+  String toString() {
+    return 'SubjectModel(id: $id, name: $name, description: $description, tests: $tests)';
+  }
 }

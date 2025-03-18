@@ -1,43 +1,46 @@
-
 import 'dart:convert';
 
 class ExemplarModel {
+  final int id;
   final String name;
   final String downloadUrl;
   final String htmlUrl;
-  late String subjectName;
-  late String testName;
+  final String subjectName;
+  final String testName;
 
   ExemplarModel(
-      {required this.downloadUrl, required this.htmlUrl, required this.name});
+      {required this.id, required this.subjectName, required this.testName, required this.downloadUrl, required this.htmlUrl, required this.name});
+
+  
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
+      'id': id,
       'name': name,
-      'download_url': downloadUrl,
-      'html_url': htmlUrl,
+      'downloadUrl': downloadUrl,
+      'htmlUrl': htmlUrl,
+      'subjectName': subjectName,
+      'testName': testName,
     };
   }
 
   factory ExemplarModel.fromMap(Map<String, dynamic> map) {
     return ExemplarModel(
-      name: map['name'] as String,
-      downloadUrl: map['download_url'] as String,
-      htmlUrl: map['html_url'] as String,
+      id:map['id'] as int,
+      name:map['name'] as String,
+      downloadUrl:map['downloadUrl'] as String,
+      htmlUrl:map['htmlUrl'] as String,
+      subjectName:map['subjectName'] as String,
+      testName:map['testName'] as String,
     );
-  }
-
-  static List<ExemplarModel> convertListDynamicToListExemplar(
-      List<dynamic> lista) {
-    return lista.map((e) => ExemplarModel.fromMap(e)).toList();
   }
 
   String toJson() => json.encode(toMap());
 
-  factory ExemplarModel.fromJson(String source) =>
-      ExemplarModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory ExemplarModel.fromJson(String source) => ExemplarModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() =>
-      'ExemplarModel(name: $name, downloadUrl: $downloadUrl, htmlUrl: $htmlUrl)';
+  String toString() {
+    return 'ExemplarModel(id: $id, name: $name, downloadUrl: $downloadUrl, htmlUrl: $htmlUrl, subjectName: $subjectName, testName: $testName)';
+  }
 }

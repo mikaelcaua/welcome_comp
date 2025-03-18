@@ -1,23 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:welcome_comp/infra/ui/components/list_test_component.dart';
-import 'package:welcome_comp/infra/ui/theme/colors.dart';
+import 'package:welcome_comp/domain/models/test_model.dart';
 import '../../../domain/models/subject_model.dart';
 import '../../viewmodels/pdf_screen_view_model.dart';
-import '../../viewmodels/subject_view_model.dart';
-import '../components/list_exemplar_component.dart';
+import '../components/list_test_component.dart';
+import '../theme/colors.dart';
 import '../theme/fonts.dart';
 
 class SubjectDetailsScreen extends StatelessWidget {
   const SubjectDetailsScreen({
     super.key,
     required this.subjectModel,
-    required this.subjectViewModel,
-    required this.pdfScreenViewModel,
+    required this.pdfScreenViewModel, required this.listTestModel,
   });
   final SubjectModel subjectModel;
-  final SubjectViewModel subjectViewModel;
   final PdfScreenViewModel pdfScreenViewModel;
-
+  final List<TestModel> listTestModel;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +38,7 @@ class SubjectDetailsScreen extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    subjectModel.title,
+                    subjectModel.name,
                     style: h1Text.copyWith(color: whiteColor),
                   ),
                   Text(
@@ -52,7 +49,10 @@ class SubjectDetailsScreen extends StatelessWidget {
               ),
             ),
           ),
-          ListTestComponent(tests: subjectModel.tests, subjectModel: subjectModel, listExemplarModel: subjectViewModel.getAllInformationsTest, pdfScreenViewModel: pdfScreenViewModel)
+          ListTestComponent(
+              tests: subjectModel.tests,
+              subjectModel: subjectModel,
+              pdfScreenViewModel: pdfScreenViewModel)
         ],
       ),
     );

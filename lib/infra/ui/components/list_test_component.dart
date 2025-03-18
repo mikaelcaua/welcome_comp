@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../../domain/models/exemplar_model.dart';
 import '../../../domain/models/subject_model.dart';
 import '../../../domain/models/test_model.dart';
 import '../../viewmodels/pdf_screen_view_model.dart';
@@ -11,11 +10,9 @@ class ListTestComponent extends StatefulWidget {
       {super.key,
       required this.tests,
       required this.subjectModel,
-      required this.listExemplarModel,
       required this.pdfScreenViewModel});
   final List<TestModel> tests;
   final SubjectModel subjectModel;
-  final Future<List<ExemplarModel>> Function(String) listExemplarModel;
   final PdfScreenViewModel pdfScreenViewModel;
 
   @override
@@ -44,7 +41,7 @@ class _ListTestComponentState extends State<ListTestComponent> {
             child: ExpansionTile(
               backgroundColor: whiteColor,
               title: Text(
-                'Prova ${index + 1}',
+                test.name,
                 style: const TextStyle(color: whiteColor),
               ),
               onExpansionChanged: (bool expanded) {
@@ -54,29 +51,11 @@ class _ListTestComponentState extends State<ListTestComponent> {
               },
               initiallyExpanded: _isExpanded[index],
               children: [
-                FutureBuilder(
-                  future: widget.listExemplarModel(test.gitUrl),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(child: CircularProgressIndicator());
-                    } else if (snapshot.hasError) {
-                      return Text('Erro: ${snapshot.error}',
-                          style: const TextStyle(color: whiteColor));
-                    }
-                    if (snapshot.hasData) {
-                      return ListExemplarComponent(
-                        testName: 'prova ${index + 1}',
-                        subjectName: widget.subjectModel.title,
-                        pdfScreenViewModel: widget.pdfScreenViewModel,
-                        listExemplarModel: snapshot.data!,
-                      );
-                    } else {
-                      return const Center(
-                        child: Text('Sem dados disponíveis',
-                            style: TextStyle(color: whiteColor)),
-                      );
-                    }
-                  },
+                ListExemplarComponent(
+                  testName: test.name,
+                  subjectName: widget.subjectModel.name,
+                  pdfScreenViewModel: widget.pdfScreenViewModel,
+                  listExemplarModel: test.listExemplarModel,
                 ),
               ],
             ),

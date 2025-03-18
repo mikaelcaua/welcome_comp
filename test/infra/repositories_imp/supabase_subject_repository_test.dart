@@ -16,7 +16,9 @@ void main() {
       url: dotenv.env['SUPABASE_URL']!,
       anonKey: dotenv.env['SUPABASE_ANON_KEY']!,
     );
-    var response = await SupabaseSubjectRepository().getAllSubject();
+    var response =
+        await SupabaseSubjectRepository().getSubjectsWithTestsAndExemplars();
+    print(response);
     expect(response, isA<List<SubjectModel>>());
   });
 }
