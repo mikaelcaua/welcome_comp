@@ -9,7 +9,6 @@ void main() {
   setUp(() {
     SharedPreferences.setMockInitialValues({});
   });
-
   test('should return all subjects', () async {
     await dotenv.load(fileName: '.env');
     await Supabase.initialize(
@@ -18,7 +17,6 @@ void main() {
     );
     var response =
         await SupabaseSubjectRepository().getSubjectsWithTestsAndExemplars();
-    print(response);
     expect(response, isA<List<SubjectModel>>());
   });
 }

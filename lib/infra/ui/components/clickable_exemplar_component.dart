@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:welcome_comp/infra/ui/utils/convertToApiUrl.dart';
-
 import '../../../domain/models/exemplar_model.dart';
 import '../../viewmodels/pdf_screen_view_model.dart';
 import '../screens/pdf_viewer_screen.dart';

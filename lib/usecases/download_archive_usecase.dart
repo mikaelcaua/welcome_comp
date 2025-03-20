@@ -1,4 +1,4 @@
-import 'package:welcome_comp/domain/repositories/system_repository.dart';
+import '../domain/repositories/system_repository.dart';
 
 class DownloadArchiveUsecase {
   final SystemRepository systemRepository;
