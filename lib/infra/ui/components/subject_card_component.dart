@@ -27,15 +27,6 @@ class SubjectCardComponent extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Image.network(
-                'https://images.pexels.com/photos/11035468/pexels-photo-11035468.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                fit: BoxFit.cover,
-                width: 70,
-                height: 70,
-              ),
-            ),
             Text(
               subjectModel.name,
               textAlign: TextAlign.center,

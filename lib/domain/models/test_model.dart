@@ -33,7 +33,7 @@ class TestModel {
       name:map['name'] as String,
       gitUrl:map['gitUrl'] as String,
       videoUrl:map['videoUrl'] as String,
-      listExemplarModel:List<ExemplarModel>.from((map['listExemplarModel'] as List<int>).map<ExemplarModel>((x) => ExemplarModel.fromMap(x as Map<String,dynamic>),),),
+      listExemplarModel:List<ExemplarModel>.from((map['listExemplarModel'] as List<dynamic>).map<ExemplarModel>((x) => ExemplarModel.fromMap(x as Map<String,dynamic>),),),
     );
   }
 

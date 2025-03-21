@@ -11,8 +11,6 @@ class ExemplarModel {
   ExemplarModel(
       {required this.id, required this.subjectName, required this.testName, required this.downloadUrl, required this.htmlUrl, required this.name});
 
-  
-
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,

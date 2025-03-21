@@ -27,16 +27,6 @@ class SubjectDetailsScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: AspectRatio(
-                      aspectRatio: 1,
-                      child: Image.network(
-                        'https://images.pexels.com/photos/11035468/pexels-photo-11035468.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
                   Text(
                     subjectModel.name,
                     style: h1Text.copyWith(color: whiteColor),

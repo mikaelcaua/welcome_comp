@@ -105,7 +105,7 @@ class SubjectModel {
       name: map['name'] as String,
       description: map['description'] as String,
       tests: List<TestModel>.from(
-        (map['tests'] as List<int>).map<TestModel>(
+        (map['tests'] as List<dynamic>).map<TestModel>(
           (x) => TestModel.fromMap(x as Map<String, dynamic>),
         ),
       ),
