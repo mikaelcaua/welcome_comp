@@ -43,13 +43,13 @@ class _SearchSectionComponentState extends State<SearchSectionComponent> {
         fillColor: whiteColor,
         hintText: 'Busque uma disciplina',
         hintStyle: h3Text.copyWith(
-            color: Colors.grey, fontSize: 16, fontWeight: FontWeight.w600),
+            color: Colors.grey, fontSize: 20, fontWeight: FontWeight.w400),
         prefixIcon: const Icon(Icons.search),
       ),
       style: h3Text.copyWith(
           color: Theme.of(context).scaffoldBackgroundColor,
-          fontSize: 16,
-          fontWeight: FontWeight.w600),
+          fontSize: 20,
+          fontWeight: FontWeight.bold),
     );
   }
 }

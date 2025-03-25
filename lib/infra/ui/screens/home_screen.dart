@@ -41,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: homeViewModel.isLoading
                     ? const Center(child: CircularProgressIndicator())
                     : ListSubjectCardComponent(
-                      listSubjects: homeViewModel.subjects,
+                        listSubjects: homeViewModel.subjects,
                         pdfScreenViewModel: widget.pdfScreenViewModel,
                       ),
               ),
@@ -52,4 +52,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-

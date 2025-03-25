@@ -17,60 +17,60 @@ class LayoutScreen extends StatefulWidget {
 
 class _LayoutScreenState extends State<LayoutScreen> {
   int _indiceAtual = 0;
+  late PdfScreenViewModel pdfScreenViewModel; // Declare o ViewModel aqui
 
-  final List<Widget> _telas = [
-    HomeScreen(
-      pdfScreenViewModel: PdfScreenViewModel(
-        downloadArchiveUsecase: DownloadArchiveUsecase(
-          systemRepository: SystemRepositoryImp(),
-        ),
-        getPdfDownloadConsentUsecase: GetPdfDownloadConsentUsecase(
-          systemRepository: SystemRepositoryImp(),
-        ),
-        setPdfDownloadConsentUsecase: SetPdfDownloadConsentUsecase(
-          systemRepository: SystemRepositoryImp(),
-        ),
+  @override
+  void initState() {
+    super.initState();
+    // Inicialize o ViewModel apenas uma vez
+    pdfScreenViewModel = PdfScreenViewModel(
+      downloadArchiveUsecase: DownloadArchiveUsecase(
+        systemRepository: SystemRepositoryImp(),
       ),
-    ),
-    HelpScreen(),
-  ];
+      getPdfDownloadConsentUsecase: GetPdfDownloadConsentUsecase(
+        systemRepository: SystemRepositoryImp(),
+      ),
+      setPdfDownloadConsentUsecase: SetPdfDownloadConsentUsecase(
+        systemRepository: SystemRepositoryImp(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> telas = [
+      HomeScreen(pdfScreenViewModel: pdfScreenViewModel), // Use a instância reutilizada
+      HelpScreen(),
+    ];
+
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(10,40,10,25),
-        child: _telas[_indiceAtual],
+        padding: const EdgeInsets.fromLTRB(10, 40, 10, 25),
+        child: telas[_indiceAtual],
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _indiceAtual,
         onTap: onTabTapped,
         selectedItemColor: whiteColor,
         unselectedItemColor: Colors.grey,
-        selectedLabelStyle: TextStyle(
+        selectedLabelStyle: const TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.bold,
         ),
-        unselectedLabelStyle: TextStyle(
+        unselectedLabelStyle: const TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.bold,
         ),
-        selectedIconTheme: IconThemeData(size: 32),
-        unselectedIconTheme: IconThemeData(size: 25),
-        items: [
-          
+        selectedIconTheme: const IconThemeData(size: 32),
+        unselectedIconTheme: const IconThemeData(size: 25),
+        items: const [
           BottomNavigationBarItem(
             label: 'Início',
-            
-            icon: Icon(
-              Icons.home_rounded,
-            ),
+            icon: Icon(Icons.home_rounded),
           ),
           BottomNavigationBarItem(
             label: 'Ajuda',
-            icon: Icon(
-              Icons.question_mark_outlined,
-            ),
+            icon: Icon(Icons.question_mark_outlined),
           ),
         ],
       ),

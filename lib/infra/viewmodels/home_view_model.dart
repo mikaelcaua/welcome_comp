@@ -18,15 +18,18 @@ class HomeViewModel extends ChangeNotifier {
   List<SubjectModel> allSubjects = [];
   List<SubjectModel> subjects = [];
   bool isLoading = false;
+  bool _dataLoaded = false; 
 
   Future<void> getAllSubjects() async {
+    if (_dataLoaded) return; 
     isLoading = true;
     notifyListeners();
     try {
       final fetchedSubjects = await getAllSubjectsUsecase.execute();
       allSubjects = fetchedSubjects;
-      subjects = List.from(allSubjects); 
+      subjects = List.from(allSubjects);
       await saveAllSubjectsOfflineUsecase.execute(fetchedSubjects);
+      _dataLoaded = true;
     } catch (e) {
       final fetchedSubjects = await loadAllSubjectsOfflineUsecase.execute();
       allSubjects = fetchedSubjects;
