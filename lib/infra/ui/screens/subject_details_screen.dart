@@ -10,15 +10,23 @@ class SubjectDetailsScreen extends StatelessWidget {
   const SubjectDetailsScreen({
     super.key,
     required this.subjectModel,
-    required this.pdfScreenViewModel, required this.listTestModel,
+    required this.pdfScreenViewModel,
+    required this.listTestModel,
   });
   final SubjectModel subjectModel;
   final PdfScreenViewModel pdfScreenViewModel;
   final List<TestModel> listTestModel;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: primaryColor,
+      appBar: AppBar(
+          title: Text(
+            subjectModel.name,
+            style: h2Text.copyWith(color: whiteColor),
+          ),
+          backgroundColor: greyColor,
+          elevation: 0),
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
@@ -27,22 +35,33 @@ class SubjectDetailsScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    subjectModel.name,
-                    style: h1Text.copyWith(color: whiteColor),
-                  ),
-                  Text(
-                    subjectModel.description,
-                    style: h2Text.copyWith(color: whiteColor),
+                  Container(
+                    padding: const EdgeInsets.all(16.0),
+                    decoration: BoxDecoration(
+                      color: greyColor,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          subjectModel.description,
+                          style: h3Text.copyWith(
+                            color: whiteColor,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
             ),
           ),
           ListTestComponent(
-              tests: subjectModel.tests,
-              subjectModel: subjectModel,
-              pdfScreenViewModel: pdfScreenViewModel)
+            tests: subjectModel.tests,
+            subjectModel: subjectModel,
+            pdfScreenViewModel: pdfScreenViewModel,
+          ),
         ],
       ),
     );

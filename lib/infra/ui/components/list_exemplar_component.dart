@@ -17,13 +17,17 @@ class ListExemplarComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: listExemplarModel.map((exemplar) {
-          return ClickableExemplarComponent(
-            exemplarModel: exemplar,
-            pdfScreenViewModel: pdfScreenViewModel,
-          );
-        }).toList());
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(0, 20,0,20),
+      child: Column(
+        spacing: 20,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: listExemplarModel.map((exemplar) {
+            return ClickableExemplarComponent(
+              exemplarModel: exemplar,
+              pdfScreenViewModel: pdfScreenViewModel,
+            );
+          }).toList()),
+    );
   }
 }

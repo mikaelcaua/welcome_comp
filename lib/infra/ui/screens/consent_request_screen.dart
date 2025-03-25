@@ -14,7 +14,7 @@ class ConsentRequestScreen extends StatelessWidget {
           const Text('Para baixar o arquivo, precisamos da sua permissão de armazenamento.'),
           ElevatedButton(
             onPressed: onButtonPressed,
-            child: const Text('Autorizar Download'),
+            child: const Text('Autorizar acesso ao armazenamento interno'),
           ),
         ],
       ),

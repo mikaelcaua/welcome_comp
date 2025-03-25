@@ -9,32 +9,25 @@ class SubjectCardComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
+    return Container(
+      padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
         decoration: BoxDecoration(
-          color: whiteColor,
-          borderRadius: BorderRadius.circular(15),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.1),
-              blurRadius: 5,
-              offset: const Offset(0, 2),
-            ),
-          ],
+          
+          color: greyColor,
+          borderRadius: BorderRadius.circular(4),
         ),
-        child: Column(
+        child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
               subjectModel.name,
               textAlign: TextAlign.center,
-              style: h3Text,
+              style: h3Text.copyWith(color: whiteColor,fontWeight: FontWeight.bold),
             ),
+            Icon(Icons.arrow_forward_ios, color: whiteColor,)
           ],
         ),
-      ),
-    );
+      );
   }
 }

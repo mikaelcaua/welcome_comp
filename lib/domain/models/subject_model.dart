@@ -27,7 +27,6 @@ class SubjectModel {
       String subjectDescription = row['subjects_description'];
 
       if (!subjectsMap.containsKey(subjectId)) {
-        print('Criando novo SubjectModel para subjectId: $subjectId');
         subjectsMap[subjectId] = SubjectModel(
           id: subjectId,
           name: subjectName,

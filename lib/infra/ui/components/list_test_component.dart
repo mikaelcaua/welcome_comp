@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:welcome_comp/infra/ui/theme/fonts.dart';
 import '../../../domain/models/subject_model.dart';
 import '../../../domain/models/test_model.dart';
 import '../../viewmodels/pdf_screen_view_model.dart';
@@ -39,10 +40,10 @@ class _ListTestComponentState extends State<ListTestComponent> {
             padding:
                 const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
             child: ExpansionTile(
-              backgroundColor: whiteColor,
+              backgroundColor: greyColor,
               title: Text(
                 test.name,
-                style: const TextStyle(color: whiteColor),
+                style: h3Text.copyWith(color: whiteColor),
               ),
               onExpansionChanged: (bool expanded) {
                 setState(() {
@@ -52,6 +53,7 @@ class _ListTestComponentState extends State<ListTestComponent> {
               initiallyExpanded: _isExpanded[index],
               children: [
                 ListExemplarComponent(
+                  
                   testName: test.name,
                   subjectName: widget.subjectModel.name,
                   pdfScreenViewModel: widget.pdfScreenViewModel,

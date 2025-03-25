@@ -3,42 +3,53 @@ import 'package:flutter/material.dart';
 import '../theme/colors.dart';
 import '../theme/fonts.dart';
 
+class SearchSectionComponent extends StatefulWidget {
+  const SearchSectionComponent({super.key, required this.onChanged});
+  final Function(String) onChanged;
 
-class SearchSectionComponent extends StatelessWidget {
-  const SearchSectionComponent({super.key});
+  @override
+  State<SearchSectionComponent> createState() => _SearchSectionComponentState();
+}
+
+class _SearchSectionComponentState extends State<SearchSectionComponent> {
+  late TextEditingController searchController;
+
+  @override
+  void initState() {
+    super.initState();
+    searchController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: primaryColor),
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 30, 20, 30),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          spacing: 30,
-          children: [
-            Text(
-              'Bora lá?',
-              style: h1Text.copyWith(color: whiteColor),
-              textAlign: TextAlign.left,
-            ),
-            TextFormField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(30),
-                  borderSide: BorderSide.none,
-                ),
-                filled: true,
-                fillColor: whiteColor,
-                hintText: 'Escolha uma disciplina para estudar',
-                prefixIcon: Icon(Icons.search),
-              ),
-            ),
-          ],
+    return TextFormField(
+      controller: searchController,
+      onChanged: (value) {
+        widget.onChanged(value);
+      },
+      keyboardType: TextInputType.name,
+      decoration: InputDecoration(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(25),
+          borderSide: BorderSide.none,
         ),
+        filled: true,
+        fillColor: whiteColor,
+        hintText: 'Busque uma disciplina',
+        hintStyle: h3Text.copyWith(
+            color: Colors.grey, fontSize: 16, fontWeight: FontWeight.w600),
+        prefixIcon: const Icon(Icons.search),
       ),
+      style: h3Text.copyWith(
+          color: Theme.of(context).scaffoldBackgroundColor,
+          fontSize: 16,
+          fontWeight: FontWeight.w600),
     );
   }
 }

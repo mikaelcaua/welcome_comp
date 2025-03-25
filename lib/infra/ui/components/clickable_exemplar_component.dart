@@ -36,9 +36,9 @@ class ClickableExemplarComponent extends StatelessWidget {
         children: [
           Text(
             exemplarModel.name,
-            style: TextStyle(fontSize: 18, color: primaryColor),
+            style: TextStyle(fontSize: 18, color: whiteColor),
           ),
-          Icon(Icons.download,color: primaryColor,)
+          Icon(Icons.download,color: whiteColor,)
         ],
       ),
     );
