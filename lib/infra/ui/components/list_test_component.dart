@@ -40,7 +40,7 @@ class _ListTestComponentState extends State<ListTestComponent> {
             padding:
                 const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
             child: ExpansionTile(
-              backgroundColor: greyColor,
+              backgroundColor: primaryColor,
               title: Text(
                 test.name,
                 style: h3Text.copyWith(color: whiteColor),

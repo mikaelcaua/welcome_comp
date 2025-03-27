@@ -13,7 +13,7 @@ class SubjectCardComponent extends StatelessWidget {
       padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
         decoration: BoxDecoration(
           
-          color: greyColor,
+          color: primaryColor,
           borderRadius: BorderRadius.circular(4),
         ),
         child: Row(

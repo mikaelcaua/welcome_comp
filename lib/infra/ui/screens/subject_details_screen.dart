@@ -25,7 +25,7 @@ class SubjectDetailsScreen extends StatelessWidget {
             subjectModel.name,
             style: h2Text.copyWith(color: whiteColor),
           ),
-          backgroundColor: greyColor,
+          backgroundColor: primaryColor,
           elevation: 0),
       body: CustomScrollView(
         slivers: [
@@ -38,7 +38,7 @@ class SubjectDetailsScreen extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(16.0),
                     decoration: BoxDecoration(
-                      color: greyColor,
+                      color: primaryColor,
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Column(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'ui/screens/layout_screen.dart';
+import 'package:welcome_comp/infra/ui/screens/layout_screen.dart'; 
 import 'ui/theme/theme.dart';
 
 class WelcomeCompApp extends StatelessWidget {
@@ -8,10 +8,10 @@ class WelcomeCompApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      
       debugShowCheckedModeBanner: false,
-      home:LayoutScreen(),
+      home: LayoutScreen(), 
       theme: buildTheme(Brightness.dark),
+      
     );
   }
 }

@@ -22,7 +22,6 @@ class _LayoutScreenState extends State<LayoutScreen> {
   @override
   void initState() {
     super.initState();
-    // Inicialize o ViewModel apenas uma vez
     pdfScreenViewModel = PdfScreenViewModel(
       downloadArchiveUsecase: DownloadArchiveUsecase(
         systemRepository: SystemRepositoryImp(),

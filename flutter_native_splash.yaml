@@ -1,0 +1,9 @@
+flutter_native_splash:
+  color: "#c1f7d7"
+  image: assets/images/logo_welcome_comp.png
+  android: true
+  ios: true
+
+  android_12:
+      image: assets/images/logo_welcome_comp.png
+      image_dark: assets/images/logo_welcome_comp.png
