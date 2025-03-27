@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:welcome_comp/infra/ui/theme/colors.dart';
 import '../../../usecases/download_archive_usecase.dart';
-import '../../../usecases/get_pdf_download_consent_usecase.dart';
-import '../../../usecases/set_pdf_download_consent_usecase.dart';
+import '../../../usecases/get_storage_consent_usecase.dart';
+import '../../../usecases/set_storage_consent_usecase.dart';
 import '../../repositories_imp/system_repository.dart';
 import '../../viewmodels/pdf_screen_view_model.dart';
 import 'help_screen.dart';
@@ -17,7 +17,7 @@ class LayoutScreen extends StatefulWidget {
 
 class _LayoutScreenState extends State<LayoutScreen> {
   int _indiceAtual = 0;
-  late PdfScreenViewModel pdfScreenViewModel; // Declare o ViewModel aqui
+  late PdfScreenViewModel pdfScreenViewModel; 
 
   @override
   void initState() {
@@ -27,10 +27,10 @@ class _LayoutScreenState extends State<LayoutScreen> {
       downloadArchiveUsecase: DownloadArchiveUsecase(
         systemRepository: SystemRepositoryImp(),
       ),
-      getPdfDownloadConsentUsecase: GetPdfDownloadConsentUsecase(
+      getPdfDownloadConsentUsecase: GetStorageConsentUsecase(
         systemRepository: SystemRepositoryImp(),
       ),
-      setPdfDownloadConsentUsecase: SetPdfDownloadConsentUsecase(
+      setPdfDownloadConsentUsecase: SetStorageConsentUsecase(
         systemRepository: SystemRepositoryImp(),
       ),
     );
@@ -39,7 +39,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> telas = [
-      HomeScreen(pdfScreenViewModel: pdfScreenViewModel), // Use a instância reutilizada
+      HomeScreen(pdfScreenViewModel: pdfScreenViewModel),
       HelpScreen(),
     ];
 

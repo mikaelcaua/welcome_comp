@@ -53,10 +53,13 @@ class _PdfViewerScreenState extends State<PdfViewerScreen> {
 
     if (consent == true) {
       await widget.pdfScreenViewModel.setPdfDownloadConsent(true);
-      setState(() {
-        _consentGiven = true;
-        _isDownloading = true;
-      });
+      bool result = await widget.pdfScreenViewModel.getPdfDownloadConsent();
+      if (result) {
+        setState(() {
+          _consentGiven = true;
+          _isDownloading = true;
+        });
+      }
     }
   }
 
@@ -66,8 +69,8 @@ class _PdfViewerScreenState extends State<PdfViewerScreen> {
       appBar: AppBar(title: const Text('Visualizando PDF')),
       body: _isDownloading
           ? PdfViewLoader(
-              pdfFuture: widget.pdfScreenViewModel.downloadArchive(
-                  widget.downloadPdfPath, widget.filePath),
+              pdfFuture: widget.pdfScreenViewModel
+                  .downloadArchive(widget.downloadPdfPath, widget.filePath),
             )
           : ConsentRequestScreen(
               onButtonPressed: _showConsentDialog,

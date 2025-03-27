@@ -9,8 +9,6 @@ class SystemRepositoryImp implements SystemRepository {
   @override
   Future<String> downloadArchive(String url, String path) async {
     try {
-      await requestPermissions();
-
       var dir = await getExternalStorageDirectory();
       if (dir == null) {
         throw 'Não foi possível obter o diretório de Downloads';
@@ -52,14 +50,18 @@ class SystemRepositoryImp implements SystemRepository {
   }
 
   @override
-  Future<bool> getPdfDownloadConsent() async {
+  Future<bool> getStorageConsent() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getBool('pdf_download_consent') ?? false;
   }
 
   @override
-  Future<void> setPdfDownloadConsent(bool consent) async {
+  Future<void> setStorageConsent(bool consent) async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('pdf_download_consent', consent);
+    bool result = false;
+    if (consent == true) {
+      result = await requestPermissions();
+    }
+    await prefs.setBool('pdf_download_consent', result);
   }
 }
