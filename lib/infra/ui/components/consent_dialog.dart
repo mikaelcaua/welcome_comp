@@ -14,9 +14,8 @@ class ConsentDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      backgroundColor: blackColor,
-      title: const Text('Permitir acesso ao armazenamento'),
-      content: const Text('Precisamos de acesso ao armazenamento para baixar ou abrir o PDF.'),
+      backgroundColor: primaryColor,
+      title: const Text('Permitir acesso ao armazenamento', style: TextStyle(color: whiteColor),),
       actions: <Widget>[
         TextButton(
           onPressed: onCancel,

@@ -16,10 +16,10 @@ class PdfScreenViewModel {
   }
 
   Future<bool> getPdfDownloadConsent() async {
-    return getPdfDownloadConsentUsecase.execute();
+    return await getPdfDownloadConsentUsecase.execute();
   }
 
-  Future<void> setPdfDownloadConsent(bool consent) async {
-    await setPdfDownloadConsentUsecase.execute(consent);
+  Future<void> setPdfDownloadConsent() async {
+    await setPdfDownloadConsentUsecase.execute();
   }
 }

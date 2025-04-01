@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:http/http.dart' as http;
 import 'package:permission_handler/permission_handler.dart';
@@ -36,16 +37,26 @@ class SystemRepositoryImp implements SystemRepository {
 
   @override
   Future<bool> requestPermissions() async {
-    try {
-      PermissionStatus status = await Permission.storage.status;
-      if (!status.isGranted) {
-        await Permission.storage.request();
+    Permission permission = Permission.storage;
+    AndroidDeviceInfo build = await DeviceInfoPlugin().androidInfo;
+    if (build.version.sdkInt >= 30) {
+      var re = await Permission.manageExternalStorage.request();
+      if (re.isGranted) {
         return true;
       } else {
         return false;
       }
-    } catch (e) {
-      throw Exception(e);
+    } else {
+      if (await permission.isGranted) {
+        return true;
+      } else {
+        var result = await permission.request();
+        if (result.isGranted) {
+          return true;
+        } else {
+          return false;
+        }
+      }
     }
   }
 
@@ -56,12 +67,12 @@ class SystemRepositoryImp implements SystemRepository {
   }
 
   @override
-  Future<void> setStorageConsent(bool consent) async {
+  Future<void> setStorageConsent() async {
     final prefs = await SharedPreferences.getInstance();
     bool result = false;
-    if (consent == true) {
-      result = await requestPermissions();
-    }
+
+    result = await requestPermissions();
+
     await prefs.setBool('pdf_download_consent', result);
   }
 }

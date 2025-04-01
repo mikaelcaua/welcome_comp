@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../viewmodels/pdf_screen_view_model.dart';
-import '../components/consent_dialog.dart';
 import '../components/pdf_view_loader.dart';
 import 'consent_request_screen.dart';
 
@@ -40,28 +39,23 @@ class _PdfViewerScreenState extends State<PdfViewerScreen> {
     }
   }
 
-  Future<void> _showConsentDialog() async {
-    final bool? consent = await showDialog<bool>(
-      context: context,
-      builder: (BuildContext context) {
-        return ConsentDialog(
-          onConfirm: () => Navigator.pop(context, true),
-          onCancel: () => Navigator.pop(context, false),
-        );
-      },
-    );
+Future<void> _showConsentDialog() async {
+  print("Botão de consentimento pressionado!");
+  await widget.pdfScreenViewModel.setPdfDownloadConsent();
+  bool result = await widget.pdfScreenViewModel.getPdfDownloadConsent();
+  print("Resultado do consentimento: $result");
 
-    if (consent == true) {
-      await widget.pdfScreenViewModel.setPdfDownloadConsent(true);
-      bool result = await widget.pdfScreenViewModel.getPdfDownloadConsent();
-      if (result) {
-        setState(() {
-          _consentGiven = true;
-          _isDownloading = true;
-        });
-      }
-    }
+  if (result) {
+    setState(() {
+      _consentGiven = true;
+      _isDownloading = true;
+      print("Consentimento concedido, iniciando download.");
+    });
+  } else {
+    print("Falha ao obter o consentimento!");
   }
+}
+
 
   @override
   Widget build(BuildContext context) {

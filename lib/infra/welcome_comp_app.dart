@@ -10,8 +10,7 @@ class WelcomeCompApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: LayoutScreen(), 
-      theme: buildTheme(Brightness.dark),
-      
+      theme: buildTheme(),
     );
   }
 }

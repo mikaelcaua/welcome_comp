@@ -4,7 +4,7 @@ class SetStorageConsentUsecase {
   final SystemRepository systemRepository;
   SetStorageConsentUsecase({required this.systemRepository});
 
-  execute(bool consent) async{
-    return await systemRepository.setStorageConsent(consent);
+  Future<void> execute() async{
+    await systemRepository.setStorageConsent();
   }
 }

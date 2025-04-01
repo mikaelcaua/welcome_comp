@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:welcome_comp/infra/ui/components/message_error.dart';
 import 'package:welcome_comp/infra/ui/theme/colors.dart';
 import '../../viewmodels/home_view_model.dart';
 import '../../viewmodels/pdf_screen_view_model.dart';
@@ -36,14 +37,19 @@ class _HomeScreenState extends State<HomeScreen> {
               SearchSectionComponent(onChanged: (value) {
                 homeViewModel.searchSubjects(value);
               }),
-              Text('Explore as disciplinas', style: h3Text.copyWith(color: whiteColor)),
+              Text('Explore as disciplinas',
+                  style: h3Text.copyWith(color: whiteColor)),
               Expanded(
                 child: homeViewModel.isLoading
                     ? const Center(child: CircularProgressIndicator())
-                    : ListSubjectCardComponent(
-                        listSubjects: homeViewModel.subjects,
-                        pdfScreenViewModel: widget.pdfScreenViewModel,
-                      ),
+                    : homeViewModel.subjects.isEmpty
+                        ? Center(
+                            child:MessageError(message: 'Este app funciona offline, mas ainda estamos carregando as disciplinas. Por favor, verifique sua conexão com a internet!',iconData: Icons.wifi_off,)
+                          )
+                        : ListSubjectCardComponent(
+                            listSubjects: homeViewModel.subjects,
+                            pdfScreenViewModel: widget.pdfScreenViewModel,
+                          ),
               ),
             ],
           );

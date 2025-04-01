@@ -30,16 +30,20 @@ class ClickableExemplarComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => _openPdf(context, exemplarModel.downloadUrl),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            exemplarModel.name,
-            style: TextStyle(fontSize: 18, color: whiteColor),
-          ),
-          Icon(Icons.download,color: whiteColor,)
-        ],
+      child: Container(
+        decoration: BoxDecoration(color: secundaryColor, borderRadius: BorderRadius.all(Radius.circular(3))),
+        padding: EdgeInsets.all(10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              exemplarModel.name,
+              style: TextStyle(fontSize: 18, color: whiteColor),
+            ),
+            Icon(Icons.download,color: whiteColor,)
+          ],
+        ),
       ),
     );
   }
