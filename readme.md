@@ -32,7 +32,7 @@ E olha que legal: o **Welcome Comp** é um projeto **open source**! Se tiver uma
 
 Se quiser baixar o banco de dados do Supabase usado no app, é só acessar [este link]().
 
-## Sobre as permissões no app
+### Sobre as permissões no app
 
 Atualmente, o app permite baixar e ler PDFs, o que exige acesso ao armazenamento interno do dispositivo. Essa permissão é solicitada de forma clara durante o uso:
 
