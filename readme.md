@@ -5,7 +5,7 @@ Seja bem-vinda(o) ao **Welcome Comp**! 🎉
 
 ### 📌 O que é o Welcome Comp?
 
-O **Welcome Comp** é um app feito para reunir conteúdos das disciplinas do curso de Ciência da Computação da Universidade Federal do Maranhão. A ideia principal é que as usuárias(os) possam acessar provas anteriores de forma simples e rápida.
+O **Welcome Comp** é um app criado para reunir conteúdos das disciplinas do curso de Ciência da Computação da Universidade Federal do Maranhão. As provas disponíveis no app vêm do repositório [awesome-ufma](https://github.com/elheremes/awesome-ufma), e a ideia principal é permitir que as usuárias(os) acessem esses materiais de forma simples e rápida.
 
 As provas ficam armazenadas offline, então, com ou sem internet, bastam dois cliques para ter qualquer prova do curso na palma da mão! 📱✨
 
@@ -31,6 +31,14 @@ device_info_plus: ^11.3.0
 E olha que legal: o **Welcome Comp** é um projeto **open source**! Se tiver uma ideia bacana, fique à vontade para contribuir e abrir um _pull request_ no repositório.
 
 Se quiser baixar o banco de dados do Supabase usado no app, é só acessar [este link]().
+
+## Sobre as permissões no app
+
+Atualmente, o app permite baixar e ler PDFs, o que exige acesso ao armazenamento interno do dispositivo. Essa permissão é solicitada de forma clara durante o uso:
+
+![permissao](https://github.com/user-attachments/assets/d379ff64-0c56-4963-9fb6-fb59147cb686)
+
+Então, se quiser contribuir adicionando novas funcionalidades, lembre-se de seguir as normas de privacidade, beleza?
 
 ### 🚀 E é isso!
 
