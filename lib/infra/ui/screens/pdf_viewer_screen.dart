@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:welcome_comp/infra/ui/theme/colors.dart';
 import '../../viewmodels/pdf_screen_view_model.dart';
 import '../components/pdf_view_loader.dart';
 import 'consent_request_screen.dart';
@@ -39,28 +40,25 @@ class _PdfViewerScreenState extends State<PdfViewerScreen> {
     }
   }
 
-Future<void> _showConsentDialog() async {
-  print("Botão de consentimento pressionado!");
-  await widget.pdfScreenViewModel.setPdfDownloadConsent();
-  bool result = await widget.pdfScreenViewModel.getPdfDownloadConsent();
-  print("Resultado do consentimento: $result");
+  Future<void> _showConsentDialog() async {
+    await widget.pdfScreenViewModel.setPdfDownloadConsent();
+    bool result = await widget.pdfScreenViewModel.getPdfDownloadConsent();
 
-  if (result) {
-    setState(() {
-      _consentGiven = true;
-      _isDownloading = true;
-      print("Consentimento concedido, iniciando download.");
-    });
-  } else {
-    print("Falha ao obter o consentimento!");
+    if (result) {
+      setState(() {
+        _consentGiven = true;
+        _isDownloading = true;
+      });
+    }
   }
-}
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Visualizando PDF')),
+      appBar: AppBar(
+        title: const Text('Visualizando PDF'),
+        backgroundColor: tertiaryColor,
+      ),
       body: _isDownloading
           ? PdfViewLoader(
               pdfFuture: widget.pdfScreenViewModel

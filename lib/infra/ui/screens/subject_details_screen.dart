@@ -46,7 +46,7 @@ class SubjectDetailsScreen extends StatelessWidget {
                       children: [
                         Text(
                           subjectModel.description,
-                          style: h3Text.copyWith(
+                          style: h4Text.copyWith(
                             color: whiteColor,
                           ),
                         ),

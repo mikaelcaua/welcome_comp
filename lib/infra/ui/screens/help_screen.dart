@@ -8,6 +8,7 @@ class HelpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
+        padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
         child: Column(
           spacing: 30,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -25,7 +26,7 @@ class HelpScreen extends StatelessWidget {
             HelpSection(
               title: "Créditos",
               description:
-                  "O Welcome Comp teve como base o repositório de provas Awesome UFMA, atualmente mantido pelo DACOMP.\n\nO app foi desenvolvido pelo discente Mikael Cauã. Caso tenha dúvidas ou sugestões, fique à vontade para entrar em contato comigo, beleza? :)\n\nAbração e até mais!",
+                  "O Welcome Comp teve como base o repositório de provas Awesome UFMA, atualmente mantido pelo DACOMP.\n\nO Welcome Comp foi desenvolvido pelo discente Mikael Cauã. Caso tenha dúvidas ou sugestões, fique à vontade para entrar em contato, beleza? :)\n\nAbração e até mais!",
             ),
           ],
         ),

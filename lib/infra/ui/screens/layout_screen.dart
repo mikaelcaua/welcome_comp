@@ -48,6 +48,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
         child: telas[_indiceAtual],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: tertiaryColor,
         currentIndex: _indiceAtual,
         onTap: onTabTapped,
         selectedItemColor: whiteColor,
