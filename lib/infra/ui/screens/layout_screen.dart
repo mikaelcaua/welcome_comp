@@ -44,7 +44,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
 
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(10, 40, 10, 25),
+        padding: const EdgeInsets.fromLTRB(10, 40, 10,0),
         child: telas[_indiceAtual],
       ),
       bottomNavigationBar: BottomNavigationBar(
