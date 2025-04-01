@@ -17,7 +17,7 @@ class LayoutScreen extends StatefulWidget {
 
 class _LayoutScreenState extends State<LayoutScreen> {
   int _indiceAtual = 0;
-  late PdfScreenViewModel pdfScreenViewModel; 
+  late PdfScreenViewModel pdfScreenViewModel;
 
   @override
   void initState() {

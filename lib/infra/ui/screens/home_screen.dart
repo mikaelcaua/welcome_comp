@@ -42,9 +42,12 @@ class _HomeScreenState extends State<HomeScreen> {
               Expanded(
                 child: homeViewModel.isLoading
                     ? const Center(child: CircularProgressIndicator())
-                    : homeViewModel.subjects.isEmpty
-                        ? Center(
-                            child:MessageError(message: 'Este app funciona offline, mas ainda estamos carregando as disciplinas. Por favor, verifique sua conexão com a internet!',iconData: Icons.wifi_off,)
+                    : homeViewModel.subjects.isEmpty && !homeViewModel.isLoading && homeViewModel.dataLoaded && homeViewModel.allSubjects.isEmpty
+                        ? const Center(
+                            child: MessageError(
+                              message: 'Este app funciona offline, mas ainda estamos carregando as disciplinas. Por favor, verifique sua conexão com a internet!',
+                              iconData: Icons.wifi_off,
+                            ),
                           )
                         : ListSubjectCardComponent(
                             listSubjects: homeViewModel.subjects,

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
-import 'package:welcome_comp/infra/ui/theme/colors.dart';
-import 'package:welcome_comp/infra/ui/theme/fonts.dart';
+import 'package:welcome_comp/infra/ui/components/message_error.dart';
 
 class PdfViewLoader extends StatelessWidget {
   final Future<String> pdfFuture;
@@ -16,28 +15,27 @@ class PdfViewLoader extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasError) {
-          return Center(
-            child: Column(
-              spacing: 20,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  'Erro ao carregar PDF, verifique sua conexão com a internet!',
-                  style: h3Text.copyWith(color: whiteColor),
-                  textAlign: TextAlign.center,
-                ),
-                Icon(
-                  Icons.wifi,
-                  size: 40,
-                )
-              ],
+          return Padding(
+            padding: const EdgeInsets.fromLTRB(15,0,15,0),
+            child: Center(
+              child: MessageError(
+                  message:
+                      'Este app funciona offline, mas ainda estamos carregando esta prova.Verifique sua conexão com a internet!',
+                  iconData: Icons.wifi_off),
             ),
           );
         } else if (snapshot.hasData) {
           return PDFView(filePath: snapshot.data!);
         } else {
-          return const Center(child: Text('Erro desconhecido'));
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: const Center(
+              child: MessageError(
+                  message:
+                      'Erro ao carregar PDF',
+                  iconData: Icons.error_outline),
+            ),
+          );
         }
       },
     );
