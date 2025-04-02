@@ -4,6 +4,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:welcome_comp/infra/ui/theme/colors.dart';
 import 'infra/repositories_imp/hive_database.dart';
 import 'infra/repositories_imp/supabase_subject_repository.dart';
 import 'infra/viewmodels/home_view_model.dart';
@@ -18,6 +19,11 @@ void main() async {
     DeviceOrientation.portraitUp,  
     DeviceOrientation.portraitDown,
   ]);
+
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    systemNavigationBarColor: tertiaryColor, 
+    systemNavigationBarIconBrightness: Brightness.light, 
+  ));
   await dotenv.load(fileName: '.env');
   await Hive.initFlutter();
   await Supabase.initialize(
