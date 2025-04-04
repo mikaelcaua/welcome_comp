@@ -53,7 +53,7 @@ class HelpScreen extends StatelessWidget {
                   icon: Icons.code,
                   color: Color(0xFF333333),
                   onPressed: helpScreenViewModel.openSite,
-                  url: 'https://github.com/mikael_caua/welcome_comp',
+                  url: 'https://github.com/mikaelcaua/welcome_comp',
                   label: 'GitHub Welcome Comp',
                 ),
               ],
