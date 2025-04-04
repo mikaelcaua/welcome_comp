@@ -18,18 +18,28 @@ class SocialMediaButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 250,
-      child: ElevatedButton.icon(
-        onPressed: () {
-          onPressed(url);
-        },
-        style: ElevatedButton.styleFrom(
-          backgroundColor: color,
-          foregroundColor: Colors.white,
+    return GestureDetector(
+      onTap: () => onPressed(url),
+      child: Container(
+        width: 250,
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(8),
         ),
-        icon: Icon(icon, color: Colors.white),
-        label: Text(label),
+        child: Row(
+          children: [
+            Icon(icon, color: Colors.white),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Text(
+                label,
+                style: const TextStyle(color: Colors.white),
+                textAlign: TextAlign.left,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

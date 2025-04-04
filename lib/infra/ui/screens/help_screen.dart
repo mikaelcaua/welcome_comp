@@ -44,7 +44,7 @@ class HelpScreen extends StatelessWidget {
                 ),
                 SocialMediaButton(
                   icon: Icons.camera_alt_outlined,
-                  color: Color(0xFF833AB4),
+                  color: Color.fromRGBO(214, 41, 119,1),
                   onPressed: helpScreenViewModel.openSite,
                   url: 'https://www.instagram.com/dacomp.ufma/',
                   label: 'Instagram DACOMP',
@@ -54,7 +54,7 @@ class HelpScreen extends StatelessWidget {
                   color: Color(0xFF333333),
                   onPressed: helpScreenViewModel.openSite,
                   url: 'https://github.com/mikael_caua/welcome_comp',
-                  label: 'Welcome Comp',
+                  label: 'GitHub Welcome Comp',
                 ),
               ],
             ),
