@@ -4,6 +4,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:http/http.dart' as http;
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../domain/repositories/system_repository.dart';
 
 class SystemRepositoryImp implements SystemRepository {
@@ -74,5 +75,12 @@ class SystemRepositoryImp implements SystemRepository {
     result = await requestPermissions();
 
     await prefs.setBool('pdf_download_consent', result);
+  }
+  
+  @override
+  Future<void> openSite(String url) async {
+    if (!await launchUrl(Uri.parse(url))) {
+      throw Exception('Não foi possível abrir o Link');
+    }
   }
 }

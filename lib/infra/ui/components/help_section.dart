@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:welcome_comp/infra/ui/theme/colors.dart';
-import 'package:welcome_comp/infra/ui/theme/fonts.dart';
+import 'package:welcome_comp/infra/ui/components/social_media_button.dart';
+import '../theme/colors.dart';
+import '../theme/fonts.dart';
 
 class HelpSection extends StatelessWidget {
   const HelpSection(
-      {super.key, required this.title, required this.description});
+      {super.key,
+      required this.title,
+      this.buttons,
+      required this.description});
 
   final String title;
+  final List<SocialMediaButton>? buttons;
   final String description;
 
   @override
@@ -21,8 +26,6 @@ class HelpSection extends StatelessWidget {
         ),
         child: Column(
           spacing: 10,
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               title,
@@ -35,6 +38,7 @@ class HelpSection extends StatelessWidget {
               description,
               style: const TextStyle(fontSize: 16, color: whiteColor),
             ),
+            if(buttons!=null)...buttons!
           ],
         ),
       ),

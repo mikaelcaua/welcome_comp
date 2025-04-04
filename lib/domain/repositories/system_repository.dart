@@ -3,4 +3,5 @@ abstract class SystemRepository {
   Future<bool> requestPermissions();
   Future<bool> getStorageConsent();
   Future<void> setStorageConsent();
+  Future<void> openSite(String url);
 }

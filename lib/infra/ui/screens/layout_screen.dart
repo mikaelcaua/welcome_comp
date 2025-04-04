@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:welcome_comp/infra/ui/theme/colors.dart';
+import 'package:welcome_comp/infra/viewmodels/help_screen_view_model.dart';
+import 'package:welcome_comp/usecases/open_site_usecase.dart';
 import '../../../usecases/download_archive_usecase.dart';
 import '../../../usecases/get_storage_consent_usecase.dart';
 import '../../../usecases/set_storage_consent_usecase.dart';
@@ -39,13 +41,15 @@ class _LayoutScreenState extends State<LayoutScreen> {
   Widget build(BuildContext context) {
     final List<Widget> telas = [
       HomeScreen(pdfScreenViewModel: pdfScreenViewModel),
-      HelpScreen(),
+      HelpScreen(helpScreenViewModel: HelpScreenViewModel(openSiteUsecase: OpenSiteUsecase(systemRepository: SystemRepositoryImp())),),
     ];
 
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(10, 40, 10,0),
-        child: telas[_indiceAtual],
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+          child: telas[_indiceAtual],
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: tertiaryColor,
