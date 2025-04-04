@@ -1,4 +1,4 @@
-package com.example.welcome_comp
+package br.mikael.welcome_comp
 
 import io.flutter.embedding.android.FlutterActivity
 
