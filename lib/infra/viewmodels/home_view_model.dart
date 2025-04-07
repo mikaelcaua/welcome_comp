@@ -19,9 +19,10 @@ class HomeViewModel extends ChangeNotifier {
   List<SubjectModel> subjects = [];
   bool isLoading = false;
   bool dataLoaded = false;
+  bool onRefresh = false;
 
   Future<void> getAllSubjects() async {
-    if (dataLoaded) return;
+    if (dataLoaded && !onRefresh) return;
     isLoading = true;
     notifyListeners();
     try {
@@ -48,6 +49,11 @@ class HomeViewModel extends ChangeNotifier {
               element.name.toLowerCase().contains(search.toLowerCase()))
           .toList();
     }
+    notifyListeners();
+  }
+
+  void setRefresh(bool refresh) {
+    onRefresh = refresh;
     notifyListeners();
   }
 }

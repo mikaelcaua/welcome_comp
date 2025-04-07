@@ -40,19 +40,43 @@ class _HomeScreenState extends State<HomeScreen> {
               Text('Explore as disciplinas',
                   style: h3Text.copyWith(color: whiteColor)),
               Expanded(
-                child: homeViewModel.isLoading
-                    ? const Center(child: CircularProgressIndicator())
-                    : homeViewModel.subjects.isEmpty && !homeViewModel.isLoading && homeViewModel.dataLoaded && homeViewModel.allSubjects.isEmpty
-                        ? const Center(
-                            child: MessageError(
-                              message: 'Este app funciona offline, mas ainda estamos carregando as disciplinas. Por favor, verifique sua conexão com a internet!',
-                              iconData: Icons.wifi_off,
-                            ),
-                          )
-                        : ListSubjectCardComponent(
-                            listSubjects: homeViewModel.subjects,
-                            pdfScreenViewModel: widget.pdfScreenViewModel,
+                child: RefreshIndicator(
+                  color: primaryColor,
+                  strokeWidth: 2.5,
+                  onRefresh: () async {
+                    homeViewModel.setRefresh(true);
+                    homeViewModel.getAllSubjects();
+                    homeViewModel.setRefresh(false);
+                  },
+                  child: homeViewModel.isLoading
+                      ? const Center(
+                          child: CircularProgressIndicator(
+                            strokeWidth: 4,
+                            valueColor:
+                                AlwaysStoppedAnimation<Color>(primaryColor),
                           ),
+                        )
+                      : homeViewModel.subjects.isEmpty &&
+                              !homeViewModel.isLoading &&
+                              homeViewModel.dataLoaded &&
+                              homeViewModel.allSubjects.isEmpty
+                          ? ListView(
+                              physics: AlwaysScrollableScrollPhysics(),
+                              children: [
+                                Center(
+                                  child: MessageError(
+                                    message:
+                                        'Este app funciona offline, mas ainda estamos carregando as disciplinas. Por favor, verifique sua conexão com a internet!',
+                                    iconData: Icons.wifi_off,
+                                  ),
+                                ),
+                              ],
+                            )
+                          : ListSubjectCardComponent(
+                              listSubjects: homeViewModel.subjects,
+                              pdfScreenViewModel: widget.pdfScreenViewModel,
+                            ),
+                ),
               ),
             ],
           );
