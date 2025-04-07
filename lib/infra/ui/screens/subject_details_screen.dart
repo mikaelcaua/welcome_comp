@@ -33,6 +33,7 @@ class SubjectDetailsScreen extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
+                spacing: 20,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
@@ -41,16 +42,24 @@ class SubjectDetailsScreen extends StatelessWidget {
                       color: primaryColor,
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          subjectModel.description,
-                          style: h4Text.copyWith(
-                            color: whiteColor,
-                          ),
-                        ),
-                      ],
+                    child: Text(
+                      'Se liga!!!!!!!!\nAs provas que você já abriu ficam salvas na pasta de downloads e podem ser acessadas e compartilhadas mesmo sem internet.',
+                      style: h4Text.copyWith(
+                        color: whiteColor,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(16.0),
+                    decoration: BoxDecoration(
+                      color: primaryColor,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Text(
+                      subjectModel.description,
+                      style: h4Text.copyWith(
+                        color: whiteColor,
+                      ),
                     ),
                   ),
                 ],

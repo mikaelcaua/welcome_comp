@@ -4,4 +4,5 @@ abstract class SystemRepository {
   Future<bool> getStorageConsent();
   Future<void> setStorageConsent();
   Future<void> openSite(String url);
+  Future<void> shareArchive(String filePath);
 }

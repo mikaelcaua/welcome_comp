@@ -28,7 +28,7 @@ class HelpScreen extends StatelessWidget {
             HelpSection(
               title: "Ocorreu algum erro?",
               description:
-                  "Primeiro, tente reinstalar o app. Se o problema persistir, você pode reportá-lo no GitHub oficial do Welcome Comp.\n\nAh, e como o código é aberto, sinta-se à vontade para contribuir com melhorias e novas funcionalidades!",
+                  "Primeiro, verifique se há alguma atualização disponível na Play Store. Em seguida, tente reinstalar o app. Se o problema continuar, você pode reportá-lo diretamente no GitHub oficial do Welcome Comp.\n\nAh, e como o código é aberto, sinta-se à vontade para contribuir com melhorias e novas funcionalidades!",
             ),
             HelpSection(
               title: "Créditos",

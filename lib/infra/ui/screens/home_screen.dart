@@ -59,14 +59,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       : homeViewModel.subjects.isEmpty &&
                               !homeViewModel.isLoading &&
                               homeViewModel.dataLoaded &&
-                              homeViewModel.allSubjects.isEmpty
+                              homeViewModel.subjects.isEmpty
                           ? ListView(
                               physics: AlwaysScrollableScrollPhysics(),
                               children: [
                                 Center(
                                   child: MessageError(
                                     message:
-                                        'Este app funciona offline, mas ainda estamos carregando as disciplinas. Por favor, verifique sua conexão com a internet!',
+                                        'Este app funciona offline, mas nenhuma disciplina foi encontrada no momento.\n\nDá uma olhadinha na sua internet e tenta de novo',
                                     iconData: Icons.wifi_off,
                                   ),
                                 ),

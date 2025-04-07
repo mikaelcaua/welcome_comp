@@ -1,7 +1,7 @@
 name: welcome_comp
 description: "Welcome Comp is an app created to bring together content from the Computer Science course subjects at the Federal University of Maranhão"
 publish_to: 'none' 
-version: 1.0.1+4
+version: 1.0.1+5
 
 environment:
   sdk: ^3.6.0
@@ -22,6 +22,7 @@ dependencies:
   hive_flutter: ^1.1.0
   device_info_plus: ^11.3.0
   url_launcher: ^6.3.1
+  share_plus: ^10.1.4
 
 dev_dependencies:
   flutter_test:

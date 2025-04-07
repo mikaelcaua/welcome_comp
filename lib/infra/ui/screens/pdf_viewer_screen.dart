@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:welcome_comp/infra/ui/theme/colors.dart';
 import '../../viewmodels/pdf_screen_view_model.dart';
 import '../components/pdf_view_loader.dart';
+import '../theme/colors.dart';
 import 'consent_request_screen.dart';
 
 class PdfViewerScreen extends StatefulWidget {
@@ -56,7 +56,20 @@ class _PdfViewerScreenState extends State<PdfViewerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Visualizando PDF'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.share),
+            color: whiteColor,
+            tooltip: 'Compartilhar PDF',
+            onPressed: () {
+              widget.pdfScreenViewModel.shareArchive(widget.filePath);
+            },
+          ),
+        ],
+        title: Text(
+          widget.filePath,
+          style: TextStyle(fontSize: 14),
+        ),
         backgroundColor: tertiaryColor,
       ),
       body: _isDownloading

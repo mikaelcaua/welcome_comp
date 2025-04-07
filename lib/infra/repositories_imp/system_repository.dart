@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:share_plus/share_plus.dart';
 import '../../domain/repositories/system_repository.dart';
 
 class SystemRepositoryImp implements SystemRepository {
@@ -63,5 +64,10 @@ class SystemRepositoryImp implements SystemRepository {
         mode: LaunchMode.externalApplication)) {
       throw Exception('Não foi possível abrir o link');
     }
+  }
+
+  @override
+  Future<void> shareArchive(String filePath) async {
+    await Share.shareXFiles([XFile('/storage/emulated/0/Download/$filePath')], text: 'Compartilhar PDF');
   }
 }
