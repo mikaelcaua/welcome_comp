@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:http/http.dart' as http;
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -9,20 +8,15 @@ import '../../domain/repositories/system_repository.dart';
 
 class SystemRepositoryImp implements SystemRepository {
   @override
-  Future<String> downloadArchive(String url, String fileName) async {
+  Future<String> downloadArchive(String url, String path) async {
     try {
-      final Directory? externalDir = await getExternalStorageDirectory();
-      if (externalDir == null) {
-        throw Exception('Não foi possível obter o diretório de armazenamento');
-      }
-
-      final String filePath = '${externalDir.path}/$fileName';
-      final File file = File(filePath);
+      String filePath = '/storage/emulated/0/Download/$path';
+      File file = File(filePath);
 
       if (await file.exists()) {
         return filePath;
       } else {
-        final http.Response response = await http.get(Uri.parse(url));
+        final response = await http.get(Uri.parse(url));
 
         if (response.statusCode == 200) {
           await file.writeAsBytes(response.bodyBytes);
@@ -32,7 +26,7 @@ class SystemRepositoryImp implements SystemRepository {
         }
       }
     } catch (e) {
-      throw Exception('Erro ao fazer download ou abrir o arquivo: $e');
+      throw Exception('Erro ao fazer download ou abrir o PDF: $e');
     }
   }
 
@@ -65,8 +59,8 @@ class SystemRepositoryImp implements SystemRepository {
 
   @override
   Future<void> openSite(String url) async {
-
-    if (!await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication)) {
+    if (!await launchUrl(Uri.parse(url),
+        mode: LaunchMode.externalApplication)) {
       throw Exception('Não foi possível abrir o link');
     }
   }

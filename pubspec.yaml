@@ -1,7 +1,7 @@
 name: welcome_comp
 description: "Welcome Comp is an app created to bring together content from the Computer Science course subjects at the Federal University of Maranhão"
 publish_to: 'none' 
-version: 1.0.3+3
+version: 1.0.1+4
 
 environment:
   sdk: ^3.6.0
