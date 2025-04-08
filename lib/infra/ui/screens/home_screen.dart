@@ -66,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Center(
                                   child: MessageError(
                                     message:
-                                        'Este app funciona offline, mas nenhuma disciplina foi encontrada no momento.\n\nDá uma olhadinha na sua internet e tenta de novo',
+                                        'Nenhuma disciplina foi encontrada no momento.\n\nDá uma olhadinha na sua internet e tenta de novo',
                                     iconData: Icons.wifi_off,
                                   ),
                                 ),

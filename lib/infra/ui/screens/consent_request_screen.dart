@@ -29,7 +29,7 @@ class ConsentRequestScreen extends StatelessWidget {
                 ),
               ),
               child: Text(
-                'Autorizar acesso ao armazenamento interno',
+                'Autorizar acesso ao armazenamento',
                 style: TextStyle(
                   color: whiteColor,
                   fontWeight: FontWeight.bold,

@@ -43,7 +43,7 @@ class SubjectDetailsScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
-                      'Se liga!!!!!!!!\nAs provas que você já abriu ficam salvas na pasta de downloads e podem ser acessadas e compartilhadas mesmo sem internet.',
+                      'As provas que você já abriu ficam salvas e podem ser acessadas mesmo sem internet :)',
                       style: h4Text.copyWith(
                         color: whiteColor,
                       ),
