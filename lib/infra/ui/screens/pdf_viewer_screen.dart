@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../viewmodels/pdf_screen_view_model.dart';
-import '../components/pdf_view_loader.dart';
+import 'pdf_view_loader.dart';
 import '../theme/colors.dart';
 import 'consent_request_screen.dart';
 
