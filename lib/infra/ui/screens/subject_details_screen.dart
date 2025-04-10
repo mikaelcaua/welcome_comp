@@ -49,19 +49,20 @@ class SubjectDetailsScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Container(
-                    padding: const EdgeInsets.all(16.0),
-                    decoration: BoxDecoration(
-                      color: primaryColor,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Text(
-                      subjectModel.description,
-                      style: h4Text.copyWith(
-                        color: whiteColor,
+                  if ((subjectModel.description).isNotEmpty)
+                    Container(
+                      padding: const EdgeInsets.all(16.0),
+                      decoration: BoxDecoration(
+                        color: primaryColor,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Text(
+                        subjectModel.description,
+                        style: h4Text.copyWith(
+                          color: whiteColor,
+                        ),
                       ),
                     ),
-                  ),
                 ],
               ),
             ),

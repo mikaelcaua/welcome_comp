@@ -11,23 +11,28 @@ class SubjectCardComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-        decoration: BoxDecoration(
-          
-          color: primaryColor,
-          borderRadius: BorderRadius.circular(4),
-        ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
+      decoration: BoxDecoration(
+        color: primaryColor,
+        borderRadius: BorderRadius.circular(4),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            child: Text(
               subjectModel.name,
-              textAlign: TextAlign.center,
-              style: h3Text.copyWith(color: whiteColor,fontWeight: FontWeight.bold),
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.start,
+              style: h3Text.copyWith(color: whiteColor, fontWeight: FontWeight.bold),
             ),
-            Icon(Icons.arrow_forward_ios, color: whiteColor,)
-          ],
-        ),
-      );
+          ),
+          Icon(
+            Icons.arrow_forward_ios,
+            color: whiteColor,
+          ),
+        ],
+      ),
+    );
   }
 }

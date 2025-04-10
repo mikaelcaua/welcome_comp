@@ -29,11 +29,15 @@ class HomeViewModel extends ChangeNotifier {
       final fetchedSubjects = await getAllSubjectsUsecase.execute();
       allSubjects = fetchedSubjects;
       subjects = List.from(allSubjects);
+      allSubjects.sort((a, b) => a.name.compareTo(b.name));
+      subjects.sort((a, b) => a.name.compareTo(b.name));
       await saveAllSubjectsOfflineUsecase.execute(fetchedSubjects);
     } catch (e) {
       final fetchedSubjects = await loadAllSubjectsOfflineUsecase.execute();
       allSubjects = fetchedSubjects;
       subjects = List.from(allSubjects);
+      allSubjects.sort((a, b) => a.name.compareTo(b.name));
+      subjects.sort((a, b) => a.name.compareTo(b.name));
     }
     dataLoaded = true;
     isLoading = false;
@@ -49,6 +53,7 @@ class HomeViewModel extends ChangeNotifier {
               element.name.toLowerCase().contains(search.toLowerCase()))
           .toList();
     }
+    subjects.sort((a, b) => a.name.compareTo(b.name));
     notifyListeners();
   }
 

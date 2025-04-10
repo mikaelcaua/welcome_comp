@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -76,6 +77,7 @@ class SystemRepositoryImp implements SystemRepository {
     if (externalDir == null) {
       throw Exception('Não foi possível obter o diretório de armazenamento');
     } else {
+      debugPrint('${externalDir.path}/$filePath');
       await Share.shareXFiles([XFile('${externalDir.path}/$filePath')],
           text: 'Compartilhar PDF');
     }

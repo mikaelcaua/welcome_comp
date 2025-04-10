@@ -22,21 +22,24 @@ class ListSubjectCardComponent extends StatelessWidget {
           delegate: SliverChildBuilderDelegate(
             (context, index) {
               final subject = listSubjects[index];
-
-              return GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => SubjectDetailsScreen(
-                        pdfScreenViewModel: pdfScreenViewModel,
-                        subjectModel: subject,
-                        listTestModel: subject.tests,
+              
+              return Padding(
+                padding: const EdgeInsets.fromLTRB(0,4,0,4),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SubjectDetailsScreen(
+                          pdfScreenViewModel: pdfScreenViewModel,
+                          subjectModel: subject,
+                          listTestModel: subject.tests,
+                        ),
                       ),
-                    ),
-                  );
-                },
-                child: SubjectCardComponent(subjectModel: subject),
+                    );
+                  },
+                  child: SubjectCardComponent(subjectModel: subject),
+                ),
               );
             },
             childCount: listSubjects.length,
